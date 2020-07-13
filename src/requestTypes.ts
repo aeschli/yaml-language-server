@@ -14,11 +14,11 @@ export namespace VSCodeContentRequest {
 }
 
 export namespace CustomSchemaContentRequest {
-    export const type: RequestType<{ }, { }, { }, { }> = new RequestType('custom/schema/content');
+    export const type: RequestType<string, string, { }, { }> = new RequestType('custom/schema/content');
 }
 
 export namespace CustomSchemaRequest {
-    export const type: RequestType<{ }, { }, { }, { }> = new RequestType('custom/schema/request');
+    export const type: RequestType<string, string | string[], { }, { }> = new RequestType('custom/schema/request');
 }
 
 export namespace ColorSymbolRequest {
@@ -27,4 +27,8 @@ export namespace ColorSymbolRequest {
 
 export namespace SchemaModificationNotification {
     export const type: RequestType<SchemaAdditions | SchemaDeletions, void, { }, { }> = new RequestType('json/schema/modify');
+}
+
+export namespace CustomSchemaStoreRequest {
+    export const type: RequestType<string, string, { }, { }> = new RequestType('custom/schema/store');
 }

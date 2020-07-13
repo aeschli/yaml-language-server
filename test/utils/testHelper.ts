@@ -3,15 +3,17 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 import {
-    IPCMessageReader,
-    IPCMessageWriter,
     createConnection,
-    IConnection,
+    Connection,
     TextDocumentSyncKind,
     TextDocument,
     InitializeResult,
     RequestType
-} from 'vscode-languageserver';
+} from 'vscode-languageserver/node';
+import {
+    IPCMessageReader,
+    IPCMessageWriter,
+} from 'vscode-jsonrpc/node';
 import {
     xhr,
     XHRResponse,
@@ -35,7 +37,7 @@ namespace VSCodeContentRequest {
 }
 
 // Create a connection for the server.
-let connection: IConnection = null;
+let connection: Connection = null;
 if (process.argv.indexOf('--stdio') === -1) {
     connection = createConnection(
         new IPCMessageReader(process),
