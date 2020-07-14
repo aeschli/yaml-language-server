@@ -25,7 +25,7 @@
   "bin": {
     "yaml-language-server": "./bin/yaml-language-server"
   },
-  "main": "./out/server/src/index.js",
+  "main": "./out/server/index.js",
   "keywords": [
     "yaml",
     "LSP"
@@ -81,6 +81,7 @@
   "scripts": {
     "clean": "rimraf out/server && rimraf lib",
     "compile": "tsc -p .",
+    "compile-webworker": "webpack --config ./build/extension-browser.webpack.config.js",
     "watch": "tsc --watch -p .",
     "test": "mocha --require ts-node/register --timeout 5000 --ui bdd ./test/*.test.ts",
     "coverage": "nyc mocha --require ts-node/register --timeout 5000 --require source-map-support/register --recursive --ui tdd ./test/*.test.ts",

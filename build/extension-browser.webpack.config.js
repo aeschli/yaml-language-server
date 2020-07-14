@@ -38,6 +38,7 @@ module.exports = /** @type WebpackConfig */ {
 				options: {
 					compilerOptions: {
 						'sourceMap': true,
+						'declaration': false
 					}
 				}
 			}]
@@ -51,7 +52,7 @@ module.exports = /** @type WebpackConfig */ {
 	},
 	output: {
 		filename: 'yamlServerMain.js',
-		path: path.join(__dirname, '../out/server/webworker'),
+		path: path.join(__dirname, '../out/server/src/webworker'),
 		libraryTarget: 'var'
 	},
 	devtool: 'source-map'

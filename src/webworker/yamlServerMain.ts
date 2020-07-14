@@ -6,7 +6,7 @@
 import { Connection } from 'vscode-languageserver';
 import { createConnection, BrowserMessageReader, BrowserMessageWriter } from 'vscode-languageserver/browser';
 import { YAMLServerInit } from '../yamlServerInit';
-import { CustomSchemaContentRequest } from '../requestTypes';
+import { VSCodeContentRequest } from '../requestTypes';
 import { SettingsState } from '../yamlSettings';
 import { WorkspaceContextService } from '../languageservice/yamlLanguageService';
 import * as URL from 'url';
@@ -25,7 +25,7 @@ const yamlSettings = new SettingsState();
  * @param uri can be a local file, vscode request, http(s) request or a custom request
  */
 const schemaRequestHandlerWrapper = (connection: Connection, uri: string): Promise<string> => {
-  return connection.sendRequest(CustomSchemaContentRequest.type, uri);
+  return connection.sendRequest(VSCodeContentRequest.type, uri);
 };
 
 const schemaRequestService = schemaRequestHandlerWrapper.bind(this, connection);

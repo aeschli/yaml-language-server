@@ -6,4 +6,6 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import './node/yamlServerMain';
+// located at `out/server/src/server` for backward compatibility
+import * as server from './node/yamlServerMain'
+export { server };
