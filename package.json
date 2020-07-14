@@ -19,7 +19,7 @@
   "bin": {
     "yaml-language-server": "./bin/yaml-language-server"
   },
-  "main": "./out/server/src/index.js",
+  "main": "./out/server/index.js",
   "keywords": [
     "yaml",
     "LSP"
@@ -64,6 +64,7 @@
   },
   "scripts": {
     "compile": "tsc -p .",
+    "compile-webworker": "webpack --config ./build/extension-browser.webpack.config.js",
     "watch": "tsc --watch -p .",
     "test": "mocha --require ts-node/register --ui tdd ./test/*.test.ts",
     "coverage": "nyc mocha --require ts-node/register --require source-map-support/register --recursive --ui tdd ./test/*.test.ts",

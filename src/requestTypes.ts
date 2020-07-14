@@ -9,10 +9,6 @@ export namespace DynamicCustomSchemaRequestRegistration {
     export const type: NotificationType<{ }, { }> = new NotificationType('yaml/registerCustomSchemaRequest');
 }
 
-export namespace VSCodeContentRequest {
-    export const type: RequestType<{ }, { }, { }, { }> = new RequestType('vscode/content');
-}
-
 export namespace CustomSchemaContentRequest {
     export const type: RequestType<string, string, { }, { }> = new RequestType('custom/schema/content');
 }
@@ -29,6 +25,10 @@ export namespace SchemaModificationNotification {
     export const type: RequestType<SchemaAdditions | SchemaDeletions, void, { }, { }> = new RequestType('json/schema/modify');
 }
 
-export namespace CustomSchemaStoreRequest {
-    export const type: RequestType<string, string, { }, { }> = new RequestType('custom/schema/store');
+export namespace SchemaContentRequest {
+    export const type: RequestType<string, string, { }, { }> = new RequestType('schema/content');
+}
+
+export namespace SchemaStoreRequest {
+    export const type: RequestType<string, string, { }, { }> = new RequestType('schema/store');
 }

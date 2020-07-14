@@ -9,7 +9,7 @@ import { Connection } from 'vscode-languageserver';
 import { xhr, XHRResponse, getErrorStatusDescription } from 'request-light';
 import * as fs from 'fs';
 
-import { VSCodeContentRequest, CustomSchemaContentRequest } from '../requestTypes';
+import { SchemaContentRequest, CustomSchemaContentRequest } from '../requestTypes';
 import { SchemaRequestService } from '../languageservice/yamlLanguageService';
 
 /**
@@ -41,7 +41,7 @@ export function getSchemaRequestHandler(connection: Connection): SchemaRequestSe
         // This is a non-standard LSP extension introduced by the JSON language server
         // See https://github.com/microsoft/vscode/blob/master/extensions/json-language-features/server/README.md
         if (scheme === 'vscode') {
-            return connection.sendRequest(VSCodeContentRequest.type, uri)
+            return connection.sendRequest(SchemaContentRequest.type, uri)
                 .then(responseText => { return responseText; }, error => { return error.message; });
         }
 

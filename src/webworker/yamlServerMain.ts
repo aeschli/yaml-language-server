@@ -6,7 +6,7 @@
  
 import { createConnection, BrowserMessageReader, BrowserMessageWriter } from 'vscode-languageserver/browser';
 import { startServer, RuntimeEnvironment } from '../serverCommon';
-import { CustomSchemaContentRequest, CustomSchemaStoreRequest } from '../requestTypes';
+import { SchemaStoreRequest, SchemaContentRequest } from '../requestTypes';
 
 declare const self: any;
 
@@ -18,10 +18,10 @@ const connection = createConnection(messageReader, messageWriter);
 const runtime: RuntimeEnvironment = {
     configureHttpRequests: () => { },
     schemaRequestHandler: (uri: string) => {
-        return connection.sendRequest(CustomSchemaContentRequest.type, uri);
+        return connection.sendRequest(SchemaContentRequest.type, uri);
     },
     schemaStoreRequestHandler: (uri: string) => {
-        return connection.sendRequest(CustomSchemaStoreRequest.type, uri);
+        return connection.sendRequest(SchemaStoreRequest.type, uri);
     }
 }
 

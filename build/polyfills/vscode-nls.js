@@ -58,22 +58,7 @@ let BundleFormat;
 })(BundleFormat = exports.BundleFormat || (exports.BundleFormat = {}));
 
 exports.loadMessageBundle = loadMessageBundle;
-function config(opts) {
-	if (opts) {
-		if (isString(opts.locale)) {
-			options.locale = opts.locale.toLowerCase();
-			options.language = options.locale;
-			resolvedLanguage = undefined;
-			resolvedBundles = Object.create(null);
-		}
-		if (opts.messageFormat !== undefined) {
-			options.messageFormat = opts.messageFormat;
-		}
-		if (opts.bundleFormat === BundleFormat.standalone && options.languagePackSupport === true) {
-			options.languagePackSupport = false;
-		}
-	}
-	isPseudo = options.locale === 'pseudo';
+function config(_opts) {
 	return loadMessageBundle;
 }
 exports.config = config;
