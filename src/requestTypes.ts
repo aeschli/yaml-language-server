@@ -33,6 +33,10 @@ export namespace CustomSchemaContentRequest {
   export const type: RequestType<string, string, {}> = new RequestType('custom/schema/content');
 }
 
+export namespace CustomSchemaRequest {
+  export const type: RequestType<{}, {}, {}> = new RequestType('custom/schema/request');
+}
+
 export namespace ColorSymbolRequest {
   export const type: RequestType<{}, {}, {}> = new RequestType('json/colorSymbols');
 }
