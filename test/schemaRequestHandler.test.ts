@@ -9,6 +9,7 @@ import * as fs from 'fs';
 import { Connection } from 'vscode-languageserver';
 import * as assert from 'assert';
 import { URI } from 'vscode-uri';
+import { testFileSystem } from './utils/testHelper';
 
 describe('Schema Request Handler Tests', () => {
   describe('schemaRequestHandler', () => {
@@ -24,7 +25,7 @@ describe('Schema Request Handler Tests', () => {
     });
     it('Should care Win URI', async () => {
       const connection = <Connection>{};
-      const resultPromise = schemaRequestHandler(connection, 'c:\\some\\window\\path\\scheme.json', [], URI.parse(''), false);
+      const resultPromise = schemaRequestHandler(connection, 'c:\\some\\window\\path\\scheme.json', [], URI.parse(''), false, testFileSystem);
       assert.ok(readFileStub.calledOnceWith('c:\\some\\window\\path\\scheme.json'));
       readFileStub.callArgWith(2, undefined, '{some: "json"}');
       const result = await resultPromise;
@@ -33,7 +34,7 @@ describe('Schema Request Handler Tests', () => {
 
     it('UNIX URI should works', async () => {
       const connection = <Connection>{};
-      const resultPromise = schemaRequestHandler(connection, '/some/unix/path/', [], URI.parse(''), false);
+      const resultPromise = schemaRequestHandler(connection, '/some/unix/path/', [], URI.parse(''), false, testFileSystem);
       readFileStub.callArgWith(2, undefined, '{some: "json"}');
       const result = await resultPromise;
       assert.equal(result, '{some: "json"}');
