@@ -17,7 +17,8 @@ describe('Schema Request Handler Tests', () => {
     let readFileStub: sinon.SinonStub;
 
     beforeEach(() => {
-      readFileStub = sandbox.stub(fs, 'readFile');
+      readFileStub = sandbox.stub(testFileSystem, 'readFile');
+      readFileStub.returns(Promise.resolve('{some: "json"}'));
     });
 
     afterEach(() => {
@@ -27,7 +28,6 @@ describe('Schema Request Handler Tests', () => {
       const connection = <Connection>{};
       const resultPromise = schemaRequestHandler(connection, 'c:\\some\\window\\path\\scheme.json', [], URI.parse(''), false, testFileSystem);
       assert.ok(readFileStub.calledOnceWith('c:\\some\\window\\path\\scheme.json'));
-      readFileStub.callArgWith(2, undefined, '{some: "json"}');
       const result = await resultPromise;
       assert.equal(result, '{some: "json"}');
     });
@@ -35,7 +35,6 @@ describe('Schema Request Handler Tests', () => {
     it('UNIX URI should works', async () => {
       const connection = <Connection>{};
       const resultPromise = schemaRequestHandler(connection, '/some/unix/path/', [], URI.parse(''), false, testFileSystem);
-      readFileStub.callArgWith(2, undefined, '{some: "json"}');
       const result = await resultPromise;
       assert.equal(result, '{some: "json"}');
     });
